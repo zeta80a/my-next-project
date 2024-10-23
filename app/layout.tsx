@@ -15,7 +15,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ja">
+      {/* ←　ここで言語設定 */}
       <body className={inter.className}>{children}</body>
     </html>
   );

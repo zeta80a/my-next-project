@@ -1,95 +1,92 @@
-import Image from "next/image";
 import styles from "./page.module.css";
+import Image from "next/image"; // Imageタグ用
+
+import NewsList from "@/app/_components/NewsList";
+import ButtonLink from "@/app/_components/ButtonLink";
+import { News } from "@/app/_libs/microcms"; // News記事データクラスを取得
+// id,title,category{name},publishedAt,createdAt,
+const data: { contents: News[] } = {
+  contents: [
+    {
+      id: "1",
+      title: "渋谷にオフィスを移転",
+      category: {
+        name: "更新情報",
+      },
+      publishedAt: "2023/05/19",
+      createdAt: "2023/05/19",
+    },
+    {
+      id: "2",
+      title: "当社CEOが業界リーダTop30に選出",
+      category: {
+        name: "更新情報",
+      },
+      publishedAt: "2023/05/19",
+      createdAt: "2023/05/19",
+    },
+    {
+      id: "3",
+      title: "テスト記事",
+      category: {
+        name: "更新情報",
+      },
+      publishedAt: "2023/04/19",
+      createdAt: "2023/04/19",
+    },
+  ],
+};
 
 export default function Home() {
+  const sliceData = data.contents.slice(0, 2);
+  //  const sliceData: News = [];
+
+  // jsのスクリプトを書ける
+  //const name = "真の世界";
+
+  // HTMLのようなマークアップをかける
+  // jsを書いたり、参照する際は{}で囲む
+  /*
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
+    <div>
+      <h1>テクノロジーの力で{name}を変える</h1>
+      <p>私たちはグローバルカンパニーです。</p>
+    </div>
+  );
+  */
+
+  // Imageタグは画像サイズを指定したサイズに自動的最適化して配信する機能
+  // 配信するサイズはwidth,heightでこの比率を維持する。
+  // liタグにkeyにキー値を指定する。
+  return (
+    <>
+      {/* ←　これはフラグメントタグの形略形。Reactではreturnは親要素を一つだけ返す必要があため。*/}
+      {/* ヘッダー */}
+      <section className={styles.top}>
         <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
+          <h1 className={styles.title}>テクノロジーの力で世界を変える</h1>
+          <p className={styles.description}>
+            私たちは市場をリードするグローバルカンパニーです。
           </p>
-        </a>
-      </div>
-    </main>
+        </div>
+        {/* これはタイトルの背景の画像 */}
+        <Image
+          className={styles.bgimg}
+          src="/img-mv.jpg"
+          alt=""
+          width={4000}
+          height={1200}
+        />
+      </section>
+      {/* 本文 */}
+      <section className={styles.news}>
+        <h2 className={styles.newsItemTitle}>News</h2>
+        <NewsList news={sliceData} />
+        {/*これはもっとみるボタン */}
+        <div className={styles.newsLink}>
+          <ButtonLink href="/news">もっとみる</ButtonLink>
+        </div>
+      </section>
+    </>
   );
 }
