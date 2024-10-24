@@ -43,8 +43,12 @@ code {
   font-family: menlo, inconsolata, monospace;
 }
 
+/* aタグすべてに適用される */
+/* なのでデザイン上、影響大 */
 a {
-  font-family: menlo, inconsolata, monospace;
+  /* font-family: menlo, inconsolata, monospace; */
+  color: inherit;
+  text-decoration: none;
 }
 
 ol,
