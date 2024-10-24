@@ -1,49 +1,12 @@
 import Image from "next/image";
+import { getMembersList } from "@/app/_libs/microcms";
+import { MEMBERS_LIST_LIMIT } from "@/app/_constants";
 import styles from "./page.module.css";
 
-const data = {
-  contents: [
-    {
-      id: "1",
-      image: {
-        url: "/img-member1.jpg",
-        width: 240,
-        height: 240,
-      },
-      name: "デビット・デビット",
-      position: "CEO",
-      profile:
-        "profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1profile1",
-    },
-    {
-      id: "2",
-      image: {
-        url: "/img-member2.jpg",
-        width: 240,
-        height: 240,
-      },
-      name: "エミリー・エミリー",
-      position: "COO",
-      profile:
-        "エグゼクティブエグゼクティブエグゼクティブエグゼクティブエグゼクティブエグゼクティブエグゼクティブエグゼクティブエグゼクティブエグゼクティブエグゼクティブエグゼクティブエグゼクティブエグゼクティブエグゼクティブエグゼクティブエグゼクティブエグゼクティブエグゼクティブエグゼクティブエグゼクティブエグゼクティブエグゼクティブ",
-    },
-    {
-      id: "3",
-      image: {
-        url: "/img-member3.jpg",
-        width: 240,
-        height: 240,
-      },
-      name: "ジョン・ジョン",
-      position: "CTO",
-      profile:
-        "先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者先進技術者",
-    },
-  ],
-};
-
 // ルーティング時はdefault exportする
-export default function Page() {
+export default async function Page() {
+  //microCMSのサーバにAPI経由でアクセス。引数は最大の受け取り件数。
+  const data = await getMembersList({ limit: MEMBERS_LIST_LIMIT });
   return (
     <div className={styles.container}>
       {data.contents.length === 0 ? (

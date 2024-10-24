@@ -1,3 +1,4 @@
+// ニュース表示コンポーネント
 import Image from "next/image";
 
 import styles from "./index.module.css";
@@ -19,13 +20,25 @@ export default function NewsList({ news }: Props) {
       {news.map((article) => (
         <li key={article.id} className={styles.list}>
           <Link href={`/news/${article.id}`} className={styles.link}>
-            <Image
-              className={styles.image}
-              src="/no-image.png"
-              alt="No Image"
-              width={1200}
-              height={630}
-            />
+            {/* thumbnailは空の場合があるのでその処理 */}
+            {article.thumbnail ? (
+              <Image
+                // 画像はmicroCMS社の独自の場所に保管される。urlはmicroCMS社独自のCDNのパス。
+                src={article.thumbnail.url}
+                alt=""
+                className={styles.image}
+                width={article.thumbnail.width}
+                height={article.thumbnail.height}
+              />
+            ) : (
+              <Image
+                className={styles.image}
+                src="/no-image.png"
+                alt="No Image"
+                width={1200}
+                height={630}
+              />
+            )}
             <dl className={styles.content}>
               <dt className={styles.title}>{article.title}</dt>
               <dd className={styles.meta}>

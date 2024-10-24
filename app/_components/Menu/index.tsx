@@ -34,7 +34,7 @@ export default function Menu() {
           <li>
             {/* isOpenは{isOpen}としてWEBページには出力されない。Reactが論理値を自動的に出力からスキップするため。*/}
             {/* {isOpen.toString()}と関数を挟めば出力できる。*/}
-            <Link href="/news">ニュース isOpen:/{isOpen.toString()}/</Link>
+            <Link href="/news">ニュース</Link>
           </li>
           <li>
             <Link href="/members">メンバー</Link>
