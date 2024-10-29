@@ -6,26 +6,11 @@ import NewsList from "@/app/_components/NewsList";
 import ButtonLink from "@/app/_components/ButtonLink";
 
 export default async function Home() {
-  //  const sliceData = data.contents.slice(0, 2);
+  //  トップページのnewsの表示件数の上限を設定
   const data = await getNewsList({
     limit: TOP_NEWS_LIMIT,
+    //    limit: 20,
   });
-  //  const sliceData: News = [];
-
-  // jsのスクリプトを書ける
-  //const name = "真の世界";
-
-  // HTMLのようなマークアップをかける
-  // jsを書いたり、参照する際は{}で囲む
-  /*
-  return (
-    <div>
-      <h1>テクノロジーの力で{name}を変える</h1>
-      <p>私たちはグローバルカンパニーです。</p>
-    </div>
-  );
-  */
-
   // Imageタグは画像サイズを指定したサイズに自動的最適化して配信する機能
   // 配信するサイズはwidth,heightでこの比率を維持する。
   // liタグにkeyにキー値を指定する。
@@ -53,6 +38,7 @@ export default async function Home() {
       <section className={styles.news}>
         <h2 className={styles.newsItemTitle}>News</h2>
         <NewsList news={data.contents} />
+        {/* <div>{JSON.stringify(data.contents)}</div> */}
         {/*これはもっとみるボタン */}
         <div className={styles.newsLink}>
           <ButtonLink href="/news">もっとみる</ButtonLink>
