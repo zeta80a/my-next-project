@@ -1,4 +1,5 @@
 // 記事表示コンポーネント
+import Link from "next/link";
 import Image from "next/image";
 import { News } from "@/app/_libs/microcms";
 import Date from "../Date";
@@ -15,14 +16,20 @@ export default function Article({ data }: Props) {
       <h1 className={styles.title}>{data.title}</h1>
       <p className={styles.description}>{data.description}</p>
       <div className={styles.meta}>
-        <Category category={data.category} />
+        <Link
+          href={`/news/category/${data.category.id}`}
+          className={styles.categoryLink}
+        >
+          <Category category={data.category} />
+        </Link>
         {/* ??はNullish Coalescing Operator（ヌリッシュ合体演算子）で、JavaScript の機能の一部です。 */}
         {/* この演算子は、左側の値が null または undefined の場合にのみ、右側の値を返します。 */}
         <Date date={data.publishedAt ?? data.createdAt} />
       </div>
-      <div>
+      {/* debug */}
+      {/* <div>
         null以外だったらURLを表示「{data.thumbnail && data.thumbnail.url}」
-      </div>
+      </div> */}
       {data.thumbnail && (
         <Image
           src={data.thumbnail.url}
@@ -32,6 +39,7 @@ export default function Article({ data }: Props) {
           height={data.thumbnail.height}
         />
       )}
+      {/* data.content:{data.content} */}
       <div
         className={styles.content}
         dangerouslySetInnerHTML={{

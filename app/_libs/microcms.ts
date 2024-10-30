@@ -29,8 +29,7 @@ export type News = {
   description: string;
   content: string;
   thumbnail?: MicroCMSImage;
-  // category: Category;
-  category?: Category;
+  category: Category;
 } & MicroCMSListContent;
 
 // 参照エラーが出ていなかチェック
@@ -76,6 +75,21 @@ export const getNewsDetail = async (
 ) => {
   const detailData = await client.getListDetail<News>({
     endpoint: "news",
+    contentId,
+    queries,
+  });
+  return detailData;
+};
+
+// getCategoryDetail
+//category.idの存在をチェックする関数
+// 引数はcontentId,queries?
+export const getCategoryDetail = async (
+  contentId: string,
+  queries?: MicroCMSQueries
+) => {
+  const detailData = await client.getListDetail<Category>({
+    endpoint: "categories",
     contentId,
     queries,
   });
