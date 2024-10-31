@@ -4,12 +4,14 @@ import { getNewsList } from "@/app/_libs/microcms";
 import { TOP_NEWS_LIMIT } from "@/app/_constants";
 import NewsList from "@/app/_components/NewsList";
 import ButtonLink from "@/app/_components/ButtonLink";
-import { NEWS_LIST_LIMIT } from "@/app/_constants";
+
+// SSR方式でレンダリングする設定(0でキャッシュを全く使用しない（SSR方式）。>0の整数でISR方式)
+export const revalidate = 60;
 
 export default async function Home() {
   //  トップページのnewsの表示件数の上限を設定
   const data = await getNewsList({
-    limit: NEWS_LIST_LIMIT,
+    limit: TOP_NEWS_LIMIT,
     //    limit: 20,
   });
   // Imageタグは画像サイズを指定したサイズに自動的最適化して配信する機能

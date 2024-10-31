@@ -16,9 +16,6 @@ type Props = {
   };
 };
 
-// SSR方式でレンダリングする設定(0でキャッシュを全く使用しない（SSR方式）。>0の整数でISR方式)
-export const revalidate = 60;
-
 // スラッグページを生成
 // paramas.slugには Linkタグのhref="/news/[slug]"が格納されている。
 export default async function Page({ params, searchParams }: Props) {
