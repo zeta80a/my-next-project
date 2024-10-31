@@ -1,0 +1,11 @@
+/* お問い合わせフォーム */
+.text {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 640px) {
+  .text {
+    text-align: left;
+  }
+}
