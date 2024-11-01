@@ -29,6 +29,7 @@ export default function NewsList({ news }: Props) {
                 className={styles.image}
                 width={article.thumbnail.width}
                 height={article.thumbnail.height}
+                sizes="100vw"
               />
             ) : (
               <Image
