@@ -1,5 +1,6 @@
 // 動的に生成されるニュース記事のページ
 // 、およびニュース編集画面
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getNewsDetail } from "@/app/_libs/microcms";
 import Article from "@/app/_components/Article";
@@ -15,6 +16,25 @@ type Props = {
     dk?: string;
   };
 };
+
+export async function generateMetadata({
+  params,
+  searchParams,
+}: Props): Promise<Metadata> {
+  const data = await getNewsDetail(params.slug, {
+    draftKey: searchParams.dk,
+  });
+
+  return {
+    title: data.title,
+    description: data.description,
+    openGraph: {
+      title: data.title,
+      description: data.description,
+      images: [data?.thumbnail?.url ?? ""],
+    },
+  };
+}
 
 // スラッグページを生成
 // paramas.slugには Linkタグのhref="/news/[slug]"が格納されている。

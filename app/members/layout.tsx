@@ -1,6 +1,11 @@
 // メンバーページとトップページのデザインの差異を補完するファイル
 import Sheet from "@/app/_components/Sheet";
 import Hero from "@/app/_components/Hero";
+import { title } from "process";
+
+export const metadata = {
+  title: "メンバー",
+};
 
 type Props = {
   children: React.ReactNode;

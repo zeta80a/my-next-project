@@ -100,3 +100,21 @@ export const getCategoryDetail = async (
   });
   return detailData;
 };
+
+//newsを全件取得する。
+// getAllContentsはmicrocms-js-sdkのメソッド
+export const getAllNewsList = async () => {
+  const listData = await client.getAllContents<News>({
+    endpoint: "news",
+  });
+  return listData;
+};
+
+// categoryを全件取得する。
+// getAllContentsはmicrocms-js-sdkのメソッド
+export const getAllCategoryList = async () => {
+  const listData = await client.getAllContents<Category>({
+    endpoint: "categories",
+  });
+  return listData;
+};

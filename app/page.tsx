@@ -28,13 +28,15 @@ export default async function Home() {
             私たちは市場をリードするグローバルカンパニーです。
           </p>
         </div>
-        {/* これはタイトルの背景の画像 */}
+        {/* これはタイトルの背景の画像。またpriority属性はこの画像の読み込みを即時に行うという指示*/}
         <Image
           className={styles.bgimg}
           src="/img-mv.jpg"
           alt=""
           width={4000}
           height={1200}
+          priority
+          sizes="100vw"
         />
       </section>
       {/* 本文 */}
